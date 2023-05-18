@@ -1,0 +1,32 @@
+[package]
+name = "roblox_group_finder"
+version = "0.1.0"
+edition = "2021"
+description = "Finds roblox groups and claims them"
+
+[workspace]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[profile.release]
+codegen-units = 1
+lto = true
+
+[dependencies]
+roblox_api = { path = "roblox_api" }
+serde = {version = "1.0", features = ["derive"]}
+tokio = {version = "1", features = ["rt", "rt-multi-thread", "time", "macros"]}
+clap = {version = "4.0", features = ["derive", "wrap_help", "unicode"]}
+figment = {version = "0.10", features = ["toml"]}
+anyhow = {version = "1.0", features = ["backtrace"]}
+toml = "0.5"
+tracing = "0.1"
+tracing-subscriber = {version = "0.3", features = ["fmt"]}
+async-trait = "0.1"
+itertools = "0.10"
+kanal = "0.1.0-pre8"
+once_cell = {version = "1.17", features = ["parking_lot"]}
+fxhash = "0.2.1"
+simple_moving_average = "0.1.2"
+parking_lot = {version = "0.12", features = ["hardware-lock-elision"]}
+indicatif = "0.17"
