@@ -77,7 +77,8 @@ async fn main() -> Result<()> {
         auth_client
             .get_latest_group_id()
             .await
-            .with_context(|| "Failed to get latest group id")?,
+            .with_context(|| "Failed to get latest group id")?
+            .get() as usize,
         &bar,
         &config.proxies,
         metadata.group_limit,

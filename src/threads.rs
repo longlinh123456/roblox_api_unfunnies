@@ -62,7 +62,8 @@ pub async fn detailed_check(
         match response {
             Ok(group_info) => {
                 retry_count = 0;
-                if group_info.public_entry_allowed
+                if !claim_sender.is_full()
+                    && group_info.public_entry_allowed
                     && group_info.owner.is_none()
                     && !group_info.is_locked
                 {

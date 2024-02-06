@@ -17,19 +17,19 @@ use crate::{
 
 #[allow(clippy::cast_possible_truncation)]
 pub fn init_check_threads(
-    latest_group_id: Id,
+    latest_group_id: usize,
     bar: &ProgressBar,
     proxies: &str,
     group_limit: u16,
 ) -> Receiver<Id> {
     let settings = SETTINGS.get().unwrap();
     let batch_check_queue: (Sender<TrackedGroup>, Receiver<TrackedGroup>) =
-        kanal::bounded(latest_group_id.get() as usize);
+        kanal::bounded(latest_group_id);
     let batch_priority_check_queue: (Sender<TrackedGroup>, Receiver<TrackedGroup>) =
-        kanal::bounded(latest_group_id.get() as usize);
-    let detailed_check_queue: (Sender<Id>, Receiver<Id>) = kanal::unbounded();
-    let detailed_priority_check_queue: (Sender<Id>, Receiver<Id>) = kanal::unbounded();
-    let claim_queue: (Sender<Id>, Receiver<Id>) = kanal::unbounded();
+        kanal::bounded(latest_group_id);
+    let detailed_check_queue: (Sender<Id>, Receiver<Id>) = kanal::bounded(latest_group_id);
+    let detailed_priority_check_queue: (Sender<Id>, Receiver<Id>) = kanal::bounded(latest_group_id);
+    let claim_queue: (Sender<Id>, Receiver<Id>) = kanal::bounded(group_limit as usize);
 
     {
         let batch_senders = (
@@ -46,7 +46,7 @@ pub fn init_check_threads(
     }
 
     info!("Initializing check queue");
-    for id in 1..=latest_group_id.get() {
+    for id in 1..=(latest_group_id as u64) {
         batch_check_queue
             .0
             .send(TrackedGroup {
