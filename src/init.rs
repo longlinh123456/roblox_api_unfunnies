@@ -58,7 +58,7 @@ pub fn init_check_threads(
 
     info!("Starting check tasks");
     let proxies = proxies.lines().collect::<Vec<&str>>();
-    BATCH_PROXIES.store(proxies.len() as u64, Ordering::Relaxed);
+    BATCH_PROXIES.store(proxies.len() as u32, Ordering::Relaxed);
     for proxy in proxies {
         if let Ok(proxy) = Proxy::all(proxy) {
             let client = Client::new(

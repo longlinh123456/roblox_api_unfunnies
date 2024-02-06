@@ -141,7 +141,8 @@ pub async fn batch_check(
                         });
                     }
                 }
-                BATCH_CHECK_COUNTER.fetch_add(data.len() as u64, Ordering::Relaxed);
+                #[allow(clippy::cast_possible_truncation)]
+                BATCH_CHECK_COUNTER.fetch_add(data.len() as u32, Ordering::Relaxed);
             }
             Err(error) => {
                 for (id, tracked) in &current_batch {
@@ -207,7 +208,8 @@ pub async fn claim(
                                 "Successfully claimed group {} ({} robux)",
                                 current_group, funds
                             );
-                            ROBUX_CLAIMED.fetch_add(funds, Ordering::Relaxed);
+                            #[allow(clippy::cast_possible_truncation)]
+                            ROBUX_CLAIMED.fetch_add(funds as u32, Ordering::Relaxed);
                             GROUPS_CLAIMED.fetch_add(1, Ordering::Relaxed);
                             let current_group_count =
                                 GROUPS_OWNED.fetch_add(1, Ordering::Relaxed) + 1;

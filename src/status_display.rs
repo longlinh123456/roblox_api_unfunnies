@@ -1,6 +1,6 @@
 use std::{
     io,
-    sync::atomic::{AtomicU16, AtomicU64, Ordering},
+    sync::atomic::{AtomicU16, AtomicU32, Ordering},
     time::Duration,
 };
 
@@ -13,9 +13,9 @@ use crate::threads::TrackedGroup;
 
 pub static GROUPS_OWNED: AtomicU16 = AtomicU16::new(0);
 pub static GROUPS_CLAIMED: AtomicU16 = AtomicU16::new(0);
-pub static BATCH_CHECK_COUNTER: AtomicU64 = AtomicU64::new(0);
-pub static BATCH_PROXIES: AtomicU64 = AtomicU64::new(0);
-pub static ROBUX_CLAIMED: AtomicU64 = AtomicU64::new(0);
+pub static BATCH_CHECK_COUNTER: AtomicU32 = AtomicU32::new(0);
+pub static BATCH_PROXIES: AtomicU32 = AtomicU32::new(0);
+pub static ROBUX_CLAIMED: AtomicU32 = AtomicU32::new(0);
 
 pub struct LogWriter(ProgressBar);
 impl io::Write for LogWriter {
@@ -51,15 +51,15 @@ pub async fn status_thread(
     group_limit: u16,
     batch_senders: (Sender<TrackedGroup>, Sender<TrackedGroup>),
 ) {
-    let mut batch: SingleSumSMA<u64, u64, 10> = SingleSumSMA::new();
+    let mut batch: SingleSumSMA<u32, u32, 10> = SingleSumSMA::new();
     loop {
         batch.add_sample(BATCH_CHECK_COUNTER.swap(0, Ordering::Relaxed));
 
         bar.set_message(format!(
-            "Groups claimed: {}\nRobux claimed: {}\nCPS: {}\nGroup capacity: {}/{}\nProxies left: {}\nQueue size: {}",
+            "Groups claimed: {}\nRobux claimed: {}\nCPM: {:.2}M\nGroup capacity: {}/{}\nProxies left: {}\nQueue size: {}",
             GROUPS_CLAIMED.load(Ordering::Relaxed),
             ROBUX_CLAIMED.load(Ordering::Relaxed),
-            batch.get_average(),
+            f64::from(batch.get_average()) * 60f64 / 1000000f64,
             GROUPS_OWNED.load(Ordering::Relaxed),
             group_limit,
             BATCH_PROXIES.load(Ordering::Relaxed),
