@@ -1116,6 +1116,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "roblox_group_api_ratelimit_measurer"
+version = "0.1.0"
+dependencies = [
+ "roblox_api",
+ "tokio",
+]
+
+[[package]]
 name = "roblox_group_finder"
 version = "0.1.0"
 dependencies = [

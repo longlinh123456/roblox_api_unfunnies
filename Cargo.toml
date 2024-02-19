@@ -5,6 +5,7 @@ edition = "2021"
 description = "Finds roblox groups and claims them"
 
 [workspace]
+members = ["roblox_api", "roblox_group_api_ratelimit_measurer"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
