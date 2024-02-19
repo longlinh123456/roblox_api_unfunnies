@@ -5,14 +5,14 @@ edition = "2021"
 description = "Library for roblox apis"
 
 [dependencies]
-reqwest = {version = "0.11", features = ["gzip", "brotli", "deflate", "json", "socks", "cookies"]}
-bounded-integer = {version = "0.5", features = ["std", "types", "serde1"]}
-thiserror = "1.0"
-itertools = "0.10"
-tracing = "0.1"
-async-trait = "0.1"
-serde = {version = "1.0", features = ["derive"]}
-bytes = "1.4"
-fxhash = "0.2"
-chrono = {version = "0.4", features = ["serde"]}
-parking_lot = {version = "0.12", features = ["hardware-lock-elision"]}
+reqwest = {version = "0", features = ["gzip", "brotli", "deflate", "json", "socks", "cookies"]}
+bounded-integer = {version = "0", features = ["std", "types", "serde1"]}
+thiserror = "1"
+itertools = "0"
+tracing = "0"
+async-trait = "0"
+serde = {version = "1", features = ["derive"]}
+bytes = "1"
+fxhash = "0"
+chrono = {version = "0", features = ["serde"]}
+parking_lot = {version = "0", features = ["hardware-lock-elision"]}
