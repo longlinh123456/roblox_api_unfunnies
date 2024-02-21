@@ -1116,6 +1116,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "roblox_api_ratelimit_measurer"
+version = "0.1.0"
+dependencies = [
+ "roblox_api",
+ "tokio",
+]
+
+[[package]]
 name = "roblox_group_finder"
 version = "0.1.0"
 dependencies = [
@@ -1128,7 +1136,6 @@ dependencies = [
  "itertools",
  "kanal",
  "once_cell",
- "parking_lot",
  "roblox_api",
  "serde",
  "simple_moving_average",
@@ -1457,6 +1464,7 @@ dependencies = [
  "libc",
  "mio",
  "num_cpus",
+ "parking_lot",
  "pin-project-lite",
  "socket2",
  "tokio-macros",
