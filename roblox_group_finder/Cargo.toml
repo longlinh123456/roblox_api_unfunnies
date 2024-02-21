@@ -7,7 +7,7 @@ description = "Finds roblox groups and claims them"
 [dependencies]
 roblox_api = { path = "../roblox_api" }
 serde = {version = "1", features = ["derive"]}
-tokio = {version = "1", features = ["rt", "rt-multi-thread", "time", "macros"]}
+tokio = {version = "1", features = ["rt", "rt-multi-thread", "time", "macros", "parking_lot"]}
 clap = {version = "4", features = ["derive", "wrap_help", "unicode"]}
 figment = {version = "0", features = ["toml"]}
 anyhow = {version = "1", features = ["backtrace"]}
