@@ -19,5 +19,4 @@ kanal = "0.1.0-pre8"
 once_cell = {version = "1", features = ["parking_lot"]}
 fxhash = "0"
 simple_moving_average = "0"
-parking_lot = {version = "0", features = ["hardware-lock-elision"]}
 indicatif = "0"
