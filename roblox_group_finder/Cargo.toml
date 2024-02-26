@@ -5,18 +5,24 @@ edition = "2021"
 description = "Finds roblox groups and claims them"
 
 [dependencies]
-roblox_api = {git = "https://github.com/longlinh123456/roblox_api.git"}
-serde = {version = "1", features = ["derive"]}
-tokio = {version = "1", features = ["rt", "rt-multi-thread", "time", "macros", "parking_lot"]}
-clap = {version = "4", features = ["derive", "wrap_help", "unicode"]}
-figment = {version = "0", features = ["toml"]}
-anyhow = {version = "1", features = ["backtrace"]}
+roblox_api = { git = "https://github.com/longlinh123456/roblox_api.git" }
+serde = { version = "1", features = ["derive"] }
+tokio = { version = "1", features = [
+	"rt",
+	"rt-multi-thread",
+	"time",
+	"macros",
+	"parking_lot",
+] }
+clap = { version = "4", features = ["derive", "wrap_help", "unicode"] }
+figment = { version = "0", features = ["toml"] }
+anyhow = { version = "1", features = ["backtrace"] }
 tracing = "0"
-tracing-subscriber = {version = "0", features = ["fmt"]}
+tracing-subscriber = { version = "0", features = ["fmt"] }
 async-trait = "0"
 itertools = "0"
 kanal = "0.1.0-pre8"
-once_cell = {version = "1", features = ["parking_lot"]}
+once_cell = { version = "1", features = ["parking_lot"] }
 fxhash = "0"
 simple_moving_average = "0"
 indicatif = "0"

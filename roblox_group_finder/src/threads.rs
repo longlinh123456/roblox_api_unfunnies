@@ -65,7 +65,6 @@ pub async fn detailed_check(
                 if !claim_sender.is_full()
                     && group_info.public_entry_allowed
                     && group_info.owner.is_none()
-                    && !group_info.is_locked
                 {
                     claim_sender.send(current_group);
                 }
