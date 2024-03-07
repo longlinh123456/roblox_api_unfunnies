@@ -1,10 +1,7 @@
 use std::num::NonZeroUsize;
 
 use async_trait::async_trait;
-use roblox_api::{
-    apis::{self, groups::GroupsApi},
-    Id, RequestResult,
-};
+use roblox_api::apis::{self, groups::GroupsApi, Id, RequestResult};
 
 use crate::constants;
 

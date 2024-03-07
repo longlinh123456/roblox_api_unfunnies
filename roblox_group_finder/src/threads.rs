@@ -3,11 +3,13 @@ use std::{collections::HashMap, process, sync::atomic::Ordering};
 use fxhash::FxBuildHasher;
 use kanal::{AsyncReceiver, Receiver, Sender};
 use roblox_api::{
+    apis::Error,
+    apis::Id,
     apis::{
         economy::EconomyAuthenticatedApi,
         groups::{GroupsApi, GroupsAuthenticatedApi, Metadata},
     },
-    AuthenticatedClient, BaseClient, Error, Id,
+    AuthenticatedClient, BaseClient,
 };
 use tokio::{
     task,
