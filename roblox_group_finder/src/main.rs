@@ -1,10 +1,6 @@
 #![deny(
-    clippy::suspicious,
-    clippy::complexity,
-    clippy::perf,
-    clippy::style,
+    clippy::all
     clippy::pedantic,
-    clippy::correctness,
     clippy::nursery
 )]
 #![allow(
