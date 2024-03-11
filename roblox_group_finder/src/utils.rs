@@ -59,7 +59,7 @@ pub trait GroupsApiExt: apis::groups::GroupsApi {
                 high_id,
                 NonZeroUsize::new(constants::MAX_IDS_IN_BATCH_REQUEST).unwrap(),
             );
-            match self.get_batch_info(ids_to_check.iter()).await {
+            match self.get_batch_info(ids_to_check.iter().copied()).await {
                 Ok(results) => {
                     let max_present_id = results.last().map(|group_info| group_info.id);
                     high_id = max_present_id.map_or_else(
