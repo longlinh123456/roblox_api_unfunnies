@@ -125,7 +125,7 @@ pub async fn batch_check(
         }
 
         let request_start = Instant::now();
-        let response = client.get_batch_info(current_batch.keys().cloned()).await;
+        let response = client.get_batch_info(current_batch.keys().copied()).await;
         let request_end = Instant::now();
         match response {
             Ok(data) => {
