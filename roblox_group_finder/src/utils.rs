@@ -53,7 +53,7 @@ fn get_partitioning_ids(
 pub trait GroupsApiExt: apis::groups::GroupsApi {
     async fn get_latest_group_id(&self) -> RequestResult<Id> {
         let (mut low_id, mut high_id) = (Id::MIN, Id::MAX);
-        while high_id - low_id > 1 {
+        while high_id.get() - low_id.get() > 1 {
             let ids_to_check = get_partitioning_ids(
                 low_id,
                 high_id,
